@@ -3,7 +3,7 @@ namespace TDD
     public class AhorcadoTests
     {
         [Fact]
-        public void AdivinarPalabraDentroDe7Intentos()
+        public void AdivinarPalabra()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             var resultado = juego.ArriesgarPalabra("palabra");
@@ -11,11 +11,24 @@ namespace TDD
         }
 
         [Fact]
-        public void ErrarPalabraDentroDe7Intentos()
+        public void ErrarPalabra()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             var resultado = juego.ArriesgarPalabra("palabras");
-            Assert.True(resultado);
+            Assert.False(resultado);
+        }
+
+        [Fact]
+        public void ErrarPalabraYPerder()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            for (int i = 0; i < 6; i++)
+            {
+                juego.ArriesgarPalabra("palabras");
+            }
+            var resultado = juego.ArriesgarPalabra("palabras");
+            Assert.False(resultado);
+            Assert.True(juego.HaPerdido());
         }
     }
 }

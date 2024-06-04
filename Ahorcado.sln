@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP Ahorcado", "TP Ahorcado\TP Ahorcado.csproj", "{B82ECEF8-C021-4B92-8B8F-1EEA0F3D3E3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP_Ahorcado", "TP Ahorcado\TP_Ahorcado.csproj", "{B82ECEF8-C021-4B92-8B8F-1EEA0F3D3E3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD", "TDD\TDD.csproj", "{5E8308DB-3294-4E76-85AF-1D32CB8536F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B82ECEF8-C021-4B92-8B8F-1EEA0F3D3E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B82ECEF8-C021-4B92-8B8F-1EEA0F3D3E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B82ECEF8-C021-4B92-8B8F-1EEA0F3D3E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

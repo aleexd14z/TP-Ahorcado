@@ -1,4 +1,4 @@
-namespace TDD
+namespace TDD   
 {
     public class AhorcadoTests
     {
@@ -19,7 +19,18 @@ namespace TDD
         }
 
         [Fact]
-        public void ErrarPalabraYPerder()
+        public void ErrarPalabraYPerderUnaVida()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            int intentosAntes = juego.IntentosRestantes;
+            juego.ArriesgarPalabra("palabras");
+            int intentosDespues = juego.IntentosRestantes;
+            Assert.Equal(7, intentosAntes);
+            Assert.Equal(6, intentosDespues);
+        }
+
+        [Fact]
+        public void ErrarPalabraYPerderPartida()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             for (int i = 0; i < 6; i++)
@@ -30,5 +41,9 @@ namespace TDD
             Assert.False(resultado);
             Assert.True(juego.HaPerdido());
         }
+
+
+
+
     }
 }

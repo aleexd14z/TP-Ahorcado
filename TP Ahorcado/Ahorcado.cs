@@ -32,10 +32,12 @@ namespace TP_Ahorcado
 
             return false;
         }
+        public int IntentosRestantes => intentosRestantes;
 
         public bool HaPerdido()
         {
             return intentosRestantes == 0 && !haGanado;
         }
+
     }
 }

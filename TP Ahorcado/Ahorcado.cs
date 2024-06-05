@@ -21,7 +21,7 @@ namespace TP_Ahorcado
 
         public bool ArriesgarPalabra(string palabra)
         {
-            if (intentosRestantes <= 0)
+            if (string.IsNullOrWhiteSpace(palabra))
                 return false;
             intentosRestantes--;
             if (palabra.Equals(palabraSecreta, StringComparison.OrdinalIgnoreCase))

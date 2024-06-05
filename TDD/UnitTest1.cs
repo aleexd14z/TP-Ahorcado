@@ -11,6 +11,17 @@ namespace TDD
         }
 
         [Fact]
+        public void NoIngresarPalabraYNoPerderIntentos()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            int intentosAntes = juego.IntentosRestantes;
+            bool resultado = juego.ArriesgarPalabra("");
+            int intentosDespues = juego.IntentosRestantes;
+            Assert.False(resultado);
+            Assert.Equal(intentosAntes, intentosDespues);
+        }
+
+        [Fact]
         public void ErrarPalabra()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
@@ -41,9 +52,5 @@ namespace TDD
             Assert.False(resultado);
             Assert.True(juego.HaPerdido());
         }
-
-
-
-
     }
 }

@@ -39,7 +39,13 @@ namespace TP_Ahorcado
             if (!char.IsLetter(letra))
                 return false;
             letra = char.ToLower(letra);
-            return palabraSecreta.ToLower().Contains(letra);
+            if (!palabraSecreta.ToLower().Contains(letra))
+            {
+                intentosRestantes--;
+                return false;
+            }
+
+            return true;
         }
 
         public bool HaPerdido()

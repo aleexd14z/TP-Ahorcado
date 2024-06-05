@@ -114,5 +114,17 @@ namespace TDD
             bool resultado = juego.ArriesgarLetra('x');
             Assert.False(resultado);
         }
+
+        [Fact]
+        public void ArriesgarLetraIncorrectaYPerderIntento()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            int intentosAntes = juego.IntentosRestantes;
+            bool resultado = juego.ArriesgarLetra('x');
+            int intentosDespues = juego.IntentosRestantes;
+            Assert.False(resultado);
+            Assert.Equal(7, intentosAntes);
+            Assert.Equal(6, intentosDespues);
+        }
     }
 }

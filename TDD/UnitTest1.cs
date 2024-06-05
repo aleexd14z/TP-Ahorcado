@@ -11,7 +11,7 @@ namespace TDD
         }
 
         [Fact]
-        public void NoIngresarPalabraYNoPerderIntentos()
+        public void NoIngresarPalabraNoPerderIntentos()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             int intentosAntes = juego.IntentosRestantes;
@@ -27,6 +27,17 @@ namespace TDD
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             int intentosAntes = juego.IntentosRestantes;
             bool resultado = juego.ArriesgarPalabra("dos palabras");
+            int intentosDespues = juego.IntentosRestantes;
+            Assert.False(resultado);
+            Assert.Equal(intentosAntes, intentosDespues);
+        }
+
+        [Fact]
+        public void CaracterInvalidoNoPerderIntentos()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            int intentosAntes = juego.IntentosRestantes;
+            bool resultado = juego.ArriesgarPalabra("palabra#12");
             int intentosDespues = juego.IntentosRestantes;
             Assert.False(resultado);
             Assert.Equal(intentosAntes, intentosDespues);

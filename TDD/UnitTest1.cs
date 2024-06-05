@@ -126,5 +126,18 @@ namespace TDD
             Assert.Equal(7, intentosAntes);
             Assert.Equal(6, intentosDespues);
         }
+
+        [Fact]
+        public void ArriesgarLetraYPederPartida()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            for (int i = 0; i < 6; i++)
+            {
+                juego.ArriesgarLetra('x');
+            }
+            var resultado = juego.ArriesgarLetra('x');
+            Assert.False(resultado);
+            Assert.True(juego.HaPerdido());
+        }
     }
 }

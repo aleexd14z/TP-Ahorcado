@@ -11,6 +11,14 @@ namespace TDD
         }
 
         [Fact]
+        public void AdivinarPalabraCaseSensitive()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            var resultado = juego.ArriesgarPalabra("PALABRA");
+            Assert.True(resultado);
+        }
+
+        [Fact]
         public void NoIngresarPalabraNoPerderIntentos()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
@@ -97,6 +105,14 @@ namespace TDD
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             bool resultado = juego.ArriesgarLetra('#');
             Assert.False(resultado);
+        }
+
+        [Fact]
+        public void ArriesgarCaracterCaseSensitive()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            bool resultado = juego.ArriesgarLetra('A');
+            Assert.True(resultado);
         }
 
         [Fact]

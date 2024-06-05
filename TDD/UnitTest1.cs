@@ -22,6 +22,17 @@ namespace TDD
         }
 
         [Fact]
+        public void PalabraConEspaciosNoPerderIntentos()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            int intentosAntes = juego.IntentosRestantes;
+            bool resultado = juego.ArriesgarPalabra("dos palabras");
+            int intentosDespues = juego.IntentosRestantes;
+            Assert.False(resultado);
+            Assert.Equal(intentosAntes, intentosDespues);
+        }
+
+        [Fact]
         public void ErrarPalabra()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");

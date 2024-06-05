@@ -84,14 +84,6 @@ namespace TDD
         }
 
         [Fact]
-        public void ArriesgarLetraIncorrecta()
-        {
-            var juego = new TP_Ahorcado.Ahorcado("palabra");
-            bool resultado = juego.ArriesgarLetra('x');
-            Assert.False(resultado);
-        }
-
-        [Fact]
         public void ArriesgarNumero()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
@@ -100,10 +92,26 @@ namespace TDD
         }
 
         [Fact]
+        public void ArriesgarCaracter()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            bool resultado = juego.ArriesgarLetra('#');
+            Assert.False(resultado);
+        }
+
+        [Fact]
         public void ArriesgarEspacioEnBlanco()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             bool resultado = juego.ArriesgarLetra(' ');
+            Assert.False(resultado);
+        }
+
+        [Fact]
+        public void ArriesgarLetraIncorrecta()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            bool resultado = juego.ArriesgarLetra('x');
             Assert.False(resultado);
         }
     }

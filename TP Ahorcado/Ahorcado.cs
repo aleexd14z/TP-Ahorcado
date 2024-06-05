@@ -34,6 +34,14 @@ namespace TP_Ahorcado
         }
         public int IntentosRestantes => intentosRestantes;
 
+        public bool ArriesgarLetra(char letra)
+        {
+            if (!char.IsLetter(letra))
+                return false;
+            letra = char.ToLower(letra);
+            return palabraSecreta.ToLower().Contains(letra);
+        }
+
         public bool HaPerdido()
         {
             return intentosRestantes == 0 && !haGanado;

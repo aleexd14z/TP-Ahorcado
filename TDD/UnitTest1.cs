@@ -90,5 +90,13 @@ namespace TDD
             bool resultado = juego.ArriesgarLetra('x');
             Assert.False(resultado);
         }
+
+        [Fact]
+        public void ArriesgarNumero()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            bool resultado = juego.ArriesgarLetra('1');
+            Assert.False(resultado);
+        }
     }
 }

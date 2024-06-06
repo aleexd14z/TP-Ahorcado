@@ -47,7 +47,18 @@ namespace TDD
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             int intentosAntes = juego.IntentosRestantes;
-            bool resultado = juego.ArriesgarPalabra("palabra#12");
+            bool resultado = juego.ArriesgarPalabra("palabra#");
+            int intentosDespues = juego.IntentosRestantes;
+            Assert.False(resultado);
+            Assert.Equal(intentosAntes, intentosDespues);
+        }
+
+        [Fact]
+        public void CaracterNumericoNoPerderIntentos()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            int intentosAntes = juego.IntentosRestantes;
+            bool resultado = juego.ArriesgarPalabra("palabra1");
             int intentosDespues = juego.IntentosRestantes;
             Assert.False(resultado);
             Assert.Equal(intentosAntes, intentosDespues);

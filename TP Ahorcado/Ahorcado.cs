@@ -12,6 +12,7 @@ namespace TP_Ahorcado
         private int intentosRestantes;
         private bool haGanado;
         private char[] estadoAux;
+        private List<char> letrasIncorrectas;
 
         public Ahorcado(string palabra)
         {
@@ -19,6 +20,7 @@ namespace TP_Ahorcado
             intentosRestantes = 7;
             haGanado = false;
             estadoAux = new string('_', palabra.Length).ToCharArray();
+            letrasIncorrectas = new List<char>();
         }
 
         public bool ArriesgarPalabra(string palabra)
@@ -54,10 +56,24 @@ namespace TP_Ahorcado
             }
             if (!letraEncontrada)
             {
+                letrasIncorrectas.Add(letra);
                 intentosRestantes--;
             }
 
             return letraEncontrada;
+        }
+
+        public List<int> ObtenerPosicionesLetra(char letra)
+        {
+            List<int> posiciones = new List<int>();
+            for (int i = 0; i < palabraSecreta.Length; i++)
+            {
+                if (char.ToLower(palabraSecreta[i]) == char.ToLower(letra))
+                {
+                    posiciones.Add(i);
+                }
+            }
+            return posiciones;
         }
 
         public string MostrarEstado()
@@ -65,11 +81,26 @@ namespace TP_Ahorcado
             return new string(estadoAux);
         }
 
+        public List<char> LetrasCorrectas()
+        {
+            List<char> letrasCorrectas = new List<char>();
+            foreach (char letra in estadoAux)
+            {
+                if (char.IsLetter(letra))
+                {
+                    letrasCorrectas.Add(letra);
+                }
+            }
+            return letrasCorrectas;
+        }
+
         public bool HaPerdido()
         {
             return intentosRestantes == 0 && !haGanado;
         }
         public int IntentosRestantes => intentosRestantes;
+
+        public List<char> LetrasIncorrectas { get { return letrasIncorrectas; } }
 
     }
 }

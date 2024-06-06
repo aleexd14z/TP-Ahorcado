@@ -1,3 +1,5 @@
+using TP_Ahorcado;
+
 namespace TDD   
 {
     public class AhorcadoTests
@@ -170,6 +172,70 @@ namespace TDD
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             juego.ArriesgarLetra('a');
             Assert.NotEqual("a__a__a", juego.MostrarEstado());
+        }
+
+        [Fact]
+        public void DevuelvePosicioLetraCorrecta()
+        {
+            var juego = new Ahorcado("palabra");
+            var posiciones = juego.ObtenerPosicionesLetra('p');
+            Assert.Equal(new List<int> { 0 }, posiciones);
+        }
+
+        [Fact]
+        public void DevuelvePosicionesLetrasCorrectas()
+        {
+            var juego = new Ahorcado("palabra");
+            var posiciones = juego.ObtenerPosicionesLetra('a');
+            Assert.Equal(new List<int> { 1, 3, 6 }, posiciones);
+        }
+
+        [Fact]
+        public void DevuelveLetraIncorrecta()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('e');
+            char letraIncorrecta = 'e';
+            Assert.Contains(letraIncorrecta, juego.LetrasIncorrectas);
+        }
+
+        [Fact]
+        public void DevuelveLetrasIncorrectas()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('x');
+            juego.ArriesgarLetra('m');
+            juego.ArriesgarLetra('z');
+
+            char[] letrasIncorrectas = { 'x', 'm', 'z' };
+            foreach (char letra in letrasIncorrectas)
+            {
+                Assert.Contains(letra, juego.LetrasIncorrectas);
+            }
+        }
+
+        [Fact]
+        public void DevuelveLetraCorrecta()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('p');
+            char letraCorrecta = 'p';
+            Assert.Contains(letraCorrecta, juego.LetrasCorrectas());
+        }
+
+        [Fact]
+        public void DevuelveLetrasCorrectas()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('p');
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('l');
+
+            char[] letrasCorrectas = { 'p', 'a', 'l' };
+            foreach (char letra in letrasCorrectas)
+            {
+                Assert.Contains(letra, juego.LetrasCorrectas());
+            }
         }
     }
 }

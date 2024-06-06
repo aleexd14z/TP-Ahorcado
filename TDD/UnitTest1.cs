@@ -155,5 +155,21 @@ namespace TDD
             Assert.False(resultado);
             Assert.True(juego.HaPerdido());
         }
+
+        [Fact]
+        public void ValidarEstadoLetra()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            juego.ArriesgarLetra('a');
+            Assert.Equal("_a_a__a", juego.MostrarEstado());
+        }
+
+        [Fact]
+        public void ErrarEstadoLetra()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            juego.ArriesgarLetra('a');
+            Assert.NotEqual("a__a__a", juego.MostrarEstado());
+        }
     }
 }

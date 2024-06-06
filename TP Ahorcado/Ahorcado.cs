@@ -39,7 +39,7 @@ namespace TP_Ahorcado
 
         public bool ArriesgarLetra(char letra)
         {
-            if (!char.IsLetter(letra))
+            if (!char.IsLetter(letra) || estadoAux.Contains(letra))
                 return false;
 
             letra = char.ToLower(letra);   

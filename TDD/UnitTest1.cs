@@ -170,6 +170,21 @@ namespace TDD
         }
 
         [Fact]
+        public void EvitarArriesgarLetraRepetida()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('p');
+            int vidasAnteriores = juego.IntentosRestantes;
+            string estadoAnterior = juego.MostrarEstado();
+
+            bool resultado = juego.ArriesgarLetra('p');
+
+            Assert.False(resultado);
+            Assert.Equal(vidasAnteriores, juego.IntentosRestantes);
+            Assert.Equal(estadoAnterior, juego.MostrarEstado());
+        }
+
+        [Fact]
         public void ValidarEstadoLetra()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");

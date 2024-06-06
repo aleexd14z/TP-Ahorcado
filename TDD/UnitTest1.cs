@@ -105,6 +105,14 @@ namespace TDD
         }
 
         [Fact]
+        public void ArriesgarLetraValidaCaseSensitive()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            bool resultado = juego.ArriesgarLetra('P');
+            Assert.True(resultado);
+        }
+
+        [Fact]
         public void ArriesgarNumero()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");

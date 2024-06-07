@@ -226,7 +226,7 @@ namespace TDD
         }
 
         [Fact]
-        public void ValidarEstadoLetra()
+        public void ValidarEstadoLetraAlIngresarBien()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             juego.ArriesgarLetra('a');
@@ -234,15 +234,27 @@ namespace TDD
         }
 
         [Fact]
-        public void ErrarEstadoLetra()
+        public void ValidarEstadoLetrasAlIngresarBien()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
             juego.ArriesgarLetra('a');
-            Assert.NotEqual("a__a__a", juego.MostrarEstado());
+            Assert.Equal("_a_a__a", juego.MostrarEstado());
+            juego.ArriesgarLetra('p');
+            Assert.Equal("pa_a__a", juego.MostrarEstado());
         }
 
         [Fact]
-        public void DevuelvePosicioLetraCorrecta()
+        public void ValidarEstadoLetrasAlIngresarMal()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            juego.ArriesgarLetra('a');
+            Assert.Equal("_a_a__a", juego.MostrarEstado());
+            juego.ArriesgarLetra('z');
+            Assert.Equal("_a_a__a", juego.MostrarEstado());
+        }
+
+        [Fact]
+        public void DevuelvePosicionLetraCorrecta()
         {
             var juego = new Ahorcado("palabra");
             var posiciones = juego.ObtenerPosicionesLetra('p');
@@ -255,6 +267,16 @@ namespace TDD
             var juego = new Ahorcado("palabra");
             var posiciones = juego.ObtenerPosicionesLetra('a');
             Assert.Equal(new List<int> { 1, 3, 6 }, posiciones);
+        }
+
+        [Fact]
+        public void DevuelvePosicionesVariasLetrasCorrectas()
+        {
+            var juego = new Ahorcado("palabra");
+            var posicionesA = juego.ObtenerPosicionesLetra('a');
+            var posicionesP = juego.ObtenerPosicionesLetra('p');
+            Assert.Equal(new List<int> { 1, 3, 6 }, posicionesA);
+            Assert.Equal(new List<int> { 0 }, posicionesP);
         }
 
         [Fact]

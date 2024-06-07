@@ -5,6 +5,13 @@ namespace TDD
     public class AhorcadoTests
     {
         [Fact]
+        public void InicializarPalabra()
+        {
+            var juego = new TP_Ahorcado.Ahorcado("palabra");
+            Assert.Equal("palabra", juego.PalabraSecreta);
+        }
+
+        [Fact]
         public void AdivinarPalabra()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");

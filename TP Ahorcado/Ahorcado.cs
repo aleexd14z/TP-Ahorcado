@@ -100,6 +100,8 @@ namespace TP_Ahorcado
         }
         public int IntentosRestantes => intentosRestantes;
 
+        public string PalabraSecreta => palabraSecreta;
+
         public List<char> LetrasIncorrectas { get { return letrasIncorrectas; } }
 
     }

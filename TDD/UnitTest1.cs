@@ -145,6 +145,17 @@ namespace TDD
         }
 
         [Fact]
+        public void ArriesgarEspacioEnBlancoNoPerderIntento()
+        {
+            var juego = new Ahorcado("palabra");
+            int vidasAntes = juego.IntentosRestantes;
+            bool resultado = juego.ArriesgarLetra(' ');
+            int vidasDespues = juego.IntentosRestantes;
+            Assert.False(resultado);
+            Assert.Equal(vidasAntes, vidasDespues);
+        }
+
+        [Fact]
         public void ArriesgarLetraIncorrecta()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");

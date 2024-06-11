@@ -13,6 +13,7 @@ namespace TP_Ahorcado
         private bool haGanado;
         private char[] estadoAux;
         private List<char> letrasIncorrectas;
+        private string nombreUsuario;
 
 
         private static readonly Dictionary<string, List<string>> bancosDePalabras = new Dictionary<string, List<string>>
@@ -38,15 +39,6 @@ namespace TP_Ahorcado
             estadoAux = new string('_', palabraSecreta.Length).ToCharArray();
             letrasIncorrectas = new List<char>();
         }
-
-       /* public Ahorcado(string palabra)
-        {
-            palabraSecreta = palabra;
-            intentosRestantes = 7;
-            haGanado = false;
-            estadoAux = new string('_', palabra.Length).ToCharArray();
-            letrasIncorrectas = new List<char>();
-        } */
 
         private static string SeleccionarPalabra(string dificultad)
         {
@@ -120,6 +112,16 @@ namespace TP_Ahorcado
                 }
             }
             return letrasCorrectas;
+        }
+
+        public bool IngresarNombre(string nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre) || !nombre.All(char.IsLetter))
+            {
+                return false;
+            }
+            nombreUsuario = nombre;
+            return true;
         }
 
         public string MostrarEstado()

@@ -360,4 +360,30 @@ namespace TDD
             var palabrasFaciles = new List<string> { "otorrinolaringologia", "electroencefalograma", "paralelepipedo", "anticonstitucionalidad" };
             Assert.Contains(palabraSecreta, palabrasFaciles);
         }
+
+        [Fact]
+        public void NombreValido()
+        {
+            var juego = new Ahorcado("facil");
+            bool resultado = juego.IngresarNombre("AndresJoaquin");
+            Assert.True(resultado);
+        }
+
+        [Fact]
+        public void NombreInvalidoContieneEspacios()
+        {
+            var juego = new Ahorcado("facil");
+            bool resultado = juego.IngresarNombre("Andres Joaquin");
+            Assert.False(resultado);
+        }
+
+        [Fact]
+        public void NombreInvalidoContieneCaracteresEspeciales()
+        {
+            var juego = new Ahorcado("facil");
+            bool resultado = juego.IngresarNombre("Andres Jo@quin");
+            Assert.False(resultado);
+        }
+
     }
+}

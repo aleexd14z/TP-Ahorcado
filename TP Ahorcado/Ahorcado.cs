@@ -18,6 +18,7 @@ namespace TP_Ahorcado
         private static readonly Dictionary<string, List<string>> bancosDePalabras = new Dictionary<string, List<string>>
         {
             { "facil", new List<string> { "gato", "perro", "casa", "sol", "mesa" } },
+            { "medio", new List<string> { "elefante", "mariposa", "murcielago", "bicicleta" } }
         };
 
         public Ahorcado(string entrada)

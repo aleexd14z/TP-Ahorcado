@@ -14,13 +14,43 @@ namespace TP_Ahorcado
         private char[] estadoAux;
         private List<char> letrasIncorrectas;
 
-        public Ahorcado(string palabra)
+
+        private static readonly Dictionary<string, List<string>> bancosDePalabras = new Dictionary<string, List<string>>
+        {
+            { "facil", new List<string> { "gato", "perro", "casa", "sol", "mesa" } },
+        };
+
+        public Ahorcado(string entrada)
+        {
+            if (bancosDePalabras.ContainsKey(entrada))
+            {
+                palabraSecreta = SeleccionarPalabra(entrada);
+            }
+            else
+            {
+                palabraSecreta = entrada;
+            }
+            intentosRestantes = 7;
+            haGanado = false;
+            estadoAux = new string('_', palabraSecreta.Length).ToCharArray();
+            letrasIncorrectas = new List<char>();
+        }
+
+       /* public Ahorcado(string palabra)
         {
             palabraSecreta = palabra;
             intentosRestantes = 7;
             haGanado = false;
             estadoAux = new string('_', palabra.Length).ToCharArray();
             letrasIncorrectas = new List<char>();
+        } */
+
+        private static string SeleccionarPalabra(string dificultad)
+        {
+            var palabras = bancosDePalabras[dificultad];
+            var random = new Random();
+            int index = random.Next(palabras.Count);
+            return palabras[index];
         }
 
         public bool ArriesgarPalabra(string palabra)
@@ -76,11 +106,6 @@ namespace TP_Ahorcado
             return posiciones;
         }
 
-        public string MostrarEstado()
-        {
-            return new string(estadoAux);
-        }
-
         public List<char> LetrasCorrectas()
         {
             List<char> letrasCorrectas = new List<char>();
@@ -92,6 +117,16 @@ namespace TP_Ahorcado
                 }
             }
             return letrasCorrectas;
+        }
+
+        public string MostrarEstado()
+        {
+            return new string(estadoAux);
+        }
+
+        public string ObtenerPalabraSecreta()
+        {
+            return palabraSecreta;
         }
 
         public bool HaPerdido()

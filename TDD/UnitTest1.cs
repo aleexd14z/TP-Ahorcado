@@ -351,4 +351,13 @@ namespace TDD
             var palabrasFaciles = new List<string> { "elefante", "mariposa", "murcielago", "bicicleta" };
             Assert.Contains(palabraSecreta, palabrasFaciles);
         }
-}
+
+        [Fact]
+        public void PalabraDificilEstaEnLalista()
+        {
+            var juego = new Ahorcado("dificil");
+            var palabraSecreta = juego.ObtenerPalabraSecreta();
+            var palabrasFaciles = new List<string> { "otorrinolaringologia", "electroencefalograma", "paralelepipedo", "anticonstitucionalidad" };
+            Assert.Contains(palabraSecreta, palabrasFaciles);
+        }
+    }

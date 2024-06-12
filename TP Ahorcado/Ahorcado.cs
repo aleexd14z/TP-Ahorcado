@@ -14,14 +14,18 @@ namespace TP_Ahorcado
         private char[] estadoAux;
         private List<char> letrasIncorrectas;
         private string nombreUsuario;
+        private int puntuacion;
+        private int letrasAcertadas;
+        private string estadoAnterior;
+        private const int PUNTOS_POR_VIDA = 15;
+        private const int VALOR_POR_LETRA_FALTANTE = 50;
 
 
         private static readonly Dictionary<string, List<string>> bancosDePalabras = new Dictionary<string, List<string>>
         {
             { "facil", new List<string> { "gato", "perro", "casa", "sol", "mesa" } },
             { "medio", new List<string> { "elefante", "mariposa", "murcielago", "bicicleta" } },
-            { "dificil", new List<string> { "otorrinolaringologia", "electroencefalograma", "paralelepipedo", "anticonstitucionalidad" } }
-        
+            { "dificil", new List<string> { "otorrinolaringologia", "electroencefalograma", "paralelepipedo", "anticonstitucionalidad" } }        
         };
 
         public Ahorcado(string entrada)
@@ -38,6 +42,8 @@ namespace TP_Ahorcado
             haGanado = false;
             estadoAux = new string('_', palabraSecreta.Length).ToCharArray();
             letrasIncorrectas = new List<char>();
+            letrasAcertadas = 0;
+            estadoAnterior = new string(estadoAux);
         }
 
         private static string SeleccionarPalabra(string dificultad)
@@ -55,6 +61,7 @@ namespace TP_Ahorcado
             if (palabra.Equals(palabraSecreta, StringComparison.OrdinalIgnoreCase))
             {
                 haGanado = true;
+                estadoAnterior = new string(estadoAux);
                 estadoAux = palabraSecreta.ToCharArray();
                 return true;
             }
@@ -69,7 +76,7 @@ namespace TP_Ahorcado
 
             letra = char.ToLower(letra);   
             bool letraEncontrada = false;
-
+            estadoAnterior = new string(estadoAux);
 
             for (int i = 0; i < palabraSecreta.Length; i++)
             {
@@ -77,12 +84,17 @@ namespace TP_Ahorcado
                 {
                     estadoAux[i] = palabraSecreta[i];
                     letraEncontrada = true;
+                    letrasAcertadas++;
                 }
             }
-            if (!letraEncontrada)
+            if (!letraEncontrada && !letrasIncorrectas.Contains(letra)) 
             {
                 letrasIncorrectas.Add(letra);
                 intentosRestantes--;
+            }
+            if (!estadoAux.Contains('_'))
+            {
+                haGanado = true;
             }
 
             return letraEncontrada;
@@ -124,6 +136,22 @@ namespace TP_Ahorcado
             return true;
         }
 
+        public int CalcularPuntuacion()
+        {
+            puntuacion = 0;
+            if (haGanado)
+            {
+                int letrasFaltantes = estadoAnterior.Count(letra => letra == '_');
+                int letrasIncorrectas = LetrasIncorrectas.Count;
+                puntuacion += (IntentosRestantes * PUNTOS_POR_VIDA);
+                if (letrasFaltantes == 2)
+                    puntuacion += VALOR_POR_LETRA_FALTANTE;
+                else if (letrasFaltantes > 2)
+                    puntuacion += VALOR_POR_LETRA_FALTANTE * letrasFaltantes;
+            }
+            return puntuacion;
+        }
+
         public string MostrarEstado()
         {
             return new string(estadoAux);
@@ -143,6 +171,17 @@ namespace TP_Ahorcado
         public string PalabraSecreta => palabraSecreta;
 
         public List<char> LetrasIncorrectas { get { return letrasIncorrectas; } }
+
+        private void TerminarPartida()
+        {
+            if (haGanado)
+            {
+                puntuacion = CalcularPuntuacion();
+                Console.WriteLine($"¡Felicidades! Has ganado con una puntuación de {puntuacion}.");
+            }
+            else
+                Console.WriteLine("Derrota. Mejor suerte la próxima vez.");
+        }
 
     }
 }

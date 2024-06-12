@@ -385,5 +385,88 @@ namespace TDD
             Assert.False(resultado);
         }
 
+        [Fact]
+        public void PuntuacionLetraPorLetra()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('b');
+            juego.ArriesgarLetra('u');
+            juego.ArriesgarLetra('e');
+            juego.ArriesgarLetra('l');
+            juego.ArriesgarLetra('o');
+            juego.CalcularPuntuacion();
+            Assert.Equal(105, juego.CalcularPuntuacion());
+        }
+
+        [Fact]
+        public void PuntuacionLetraPorLetraYPalabra()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('b');
+            juego.ArriesgarLetra('u');
+            juego.ArriesgarLetra('e');
+            juego.ArriesgarLetra('l');
+            juego.ArriesgarPalabra("abuelo");
+            juego.CalcularPuntuacion();
+            Assert.Equal(105, juego.CalcularPuntuacion());
+        }
+
+        [Fact]
+        public void PuntuacionPalabraConDosFaltantes()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('b');
+            juego.ArriesgarLetra('u');
+            juego.ArriesgarLetra('e');
+            juego.ArriesgarPalabra("abuelo");
+            juego.CalcularPuntuacion();
+            Assert.Equal(155, juego.CalcularPuntuacion());
+        }
+
+        [Fact]
+        public void PuntuacionPalabraConTresFaltantes()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('b');
+            juego.ArriesgarLetra('u');
+            juego.ArriesgarPalabra("abuelo");
+            juego.CalcularPuntuacion();
+            Assert.Equal(255, juego.CalcularPuntuacion());
+        }
+
+        [Fact]
+        public void PuntuacionConUnError()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('b');
+            juego.ArriesgarLetra('u');
+            juego.ArriesgarLetra('e');
+            juego.ArriesgarLetra('l');
+            juego.ArriesgarLetra('k');
+            juego.ArriesgarLetra('o');
+            juego.CalcularPuntuacion();
+            Assert.Equal(90, juego.CalcularPuntuacion());
+        }
+
+        [Fact]
+        public void PuntuacionConDosErrores()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            juego.ArriesgarLetra('b');
+            juego.ArriesgarLetra('u');
+            juego.ArriesgarLetra('e');
+            juego.ArriesgarLetra('l');
+            juego.ArriesgarLetra('k');
+            juego.ArriesgarLetra('z');
+            juego.ArriesgarLetra('o');
+            juego.CalcularPuntuacion();
+            Assert.Equal(75, juego.CalcularPuntuacion());
+        }
     }
 }

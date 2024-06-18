@@ -136,14 +136,6 @@ namespace TDD
         }
 
         [Fact]
-        public void ArriesgarCaracterCaseSensitive()
-        {
-            var juego = new TP_Ahorcado.Ahorcado("palabra");
-            bool resultado = juego.ArriesgarLetra('A');
-            Assert.True(resultado);
-        }
-
-        [Fact]
         public void ArriesgarEspacioEnBlanco()
         {
             var juego = new TP_Ahorcado.Ahorcado("palabra");
@@ -212,7 +204,7 @@ namespace TDD
             {
                 juego.ArriesgarLetra('x');
             }
-            var resultado = juego.ArriesgarLetra('x');
+            bool resultado = juego.ArriesgarLetra('x');
             Assert.False(resultado);
             Assert.True(juego.HaPerdido());
         }

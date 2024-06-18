@@ -15,7 +15,6 @@ namespace TP_Ahorcado
         private List<char> letrasIncorrectas;
         private string nombreUsuario;
         private int puntuacion;
-        private int letrasAcertadas;
         private string estadoAnterior;
         private const int PUNTOS_POR_VIDA = 15;
         private const int VALOR_POR_LETRA_FALTANTE = 50;
@@ -42,7 +41,6 @@ namespace TP_Ahorcado
             haGanado = false;
             estadoAux = new string('_', palabraSecreta.Length).ToCharArray();
             letrasIncorrectas = new List<char>();
-            letrasAcertadas = 0;
             estadoAnterior = new string(estadoAux);
         }
 
@@ -84,12 +82,19 @@ namespace TP_Ahorcado
                 {
                     estadoAux[i] = palabraSecreta[i];
                     letraEncontrada = true;
-                    letrasAcertadas++;
                 }
             }
-            if (!letraEncontrada && !letrasIncorrectas.Contains(letra)) 
+            /* if (!letraEncontrada && !letrasIncorrectas.Contains(letra)) 
+             {
+                 letrasIncorrectas.Add(letra);
+                 intentosRestantes--;
+             } */
+            if (!letraEncontrada)
             {
-                letrasIncorrectas.Add(letra);
+                if (!letrasIncorrectas.Contains(letra))
+                {
+                    letrasIncorrectas.Add(letra);
+                }
                 intentosRestantes--;
             }
             if (!estadoAux.Contains('_'))
@@ -152,6 +157,27 @@ namespace TP_Ahorcado
             return puntuacion;
         }
 
+        public void DarPista()
+        {
+            var random = new Random();
+            var letrasOcultas = new List<int>();
+
+            for (int i = 0; i < estadoAux.Length; i++)
+            {
+                if (estadoAux[i] == '_')
+                {
+                    letrasOcultas.Add(i);
+                }
+            }
+
+            if (letrasOcultas.Count > 0)
+            {
+                int indiceAleatorio = random.Next(letrasOcultas.Count);
+                int posicion = letrasOcultas[indiceAleatorio];
+                estadoAux[posicion] = palabraSecreta[posicion];
+            }
+        }
+
         public string MostrarEstado()
         {
             return new string(estadoAux);
@@ -166,6 +192,7 @@ namespace TP_Ahorcado
         {
             return intentosRestantes == 0 && !haGanado;
         }
+
         public int IntentosRestantes => intentosRestantes;
 
         public string PalabraSecreta => palabraSecreta;

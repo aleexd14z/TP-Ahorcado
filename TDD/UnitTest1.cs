@@ -378,13 +378,24 @@ namespace TDD
         }
 
         [Fact]
-        public void PuntuacionMaximaSinArriesgarLetras()
+        public void PuntuacionMaximaSinLetraArriesgada()
         {
             var juego = new Ahorcado("abuelo");
             bool resultado = juego.ArriesgarPalabra("abuelo");
             Assert.True(resultado);
             int puntuacion = juego.CalcularPuntuacion();
             Assert.Equal(10000, puntuacion);
+        }
+
+        [Fact]
+        public void PuntuacionMaximaConLetraArriesgada()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('a');
+            bool resultado = juego.ArriesgarPalabra("abuelo");
+            Assert.True(resultado);
+            int puntuacion = juego.CalcularPuntuacion();
+            Assert.NotEqual(10000, puntuacion);
         }
 
         [Fact]

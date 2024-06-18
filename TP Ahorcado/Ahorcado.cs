@@ -18,7 +18,7 @@ namespace TP_Ahorcado
         private string estadoAnterior;
         private const int PUNTOS_POR_VIDA = 15;
         private const int VALOR_POR_LETRA_FALTANTE = 50;
-        private const int PUNTUACION_MAXIMA = 10000;
+        private const int PUNTUACION_MAXIMA = 100000;
 
 
         private static readonly Dictionary<string, List<string>> bancosDePalabras = new Dictionary<string, List<string>>
@@ -148,13 +148,12 @@ namespace TP_Ahorcado
             if (haGanado)
             {
                 int letrasFaltantes = estadoAnterior.Count(letra => letra == '_');
-                int letrasIncorrectas = LetrasIncorrectas.Count;
                 puntuacion += (IntentosRestantes * PUNTOS_POR_VIDA);
                 if (letrasFaltantes == 2)
                     puntuacion += VALOR_POR_LETRA_FALTANTE;
                 else if (letrasFaltantes > 2)
                     puntuacion += VALOR_POR_LETRA_FALTANTE * letrasFaltantes;
-                if (estadoAnterior.All(letra => letra == '_'))  // Si no había ninguna letra arriesgada
+                if (estadoAnterior.All(letra => letra == '_') && intentosRestantes == 7)  // Si no había ninguna letra arriesgada
                     puntuacion = PUNTUACION_MAXIMA;  // Puntuación máxima por adivinar la palabra sin letras arriesgadas
 
             }

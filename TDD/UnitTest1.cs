@@ -384,7 +384,7 @@ namespace TDD
             bool resultado = juego.ArriesgarPalabra("abuelo");
             Assert.True(resultado);
             int puntuacion = juego.CalcularPuntuacion();
-            Assert.Equal(10000, puntuacion);
+            Assert.Equal(100000, puntuacion);
         }
 
         [Fact]
@@ -395,21 +395,39 @@ namespace TDD
             bool resultado = juego.ArriesgarPalabra("abuelo");
             Assert.True(resultado);
             int puntuacion = juego.CalcularPuntuacion();
-            Assert.NotEqual(10000, puntuacion);
+            Assert.NotEqual(100000, puntuacion);
         }
 
         [Fact]
-        public void PuntuacionLetraPorLetra()
+        public void PuntuacionMaximaConIntentPerdido()
         {
             var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('x');
+            bool resultado = juego.ArriesgarPalabra("abuelo");
+            Assert.True(resultado);
+            int puntuacion = juego.CalcularPuntuacion();
+            Assert.NotEqual(100000, puntuacion);
+        }
+
+        [Fact]
+        public void PuntuacionPeorDeLosCasos()
+        {
+            var juego = new Ahorcado("abuelo");
+            juego.ArriesgarLetra('x');
+            juego.ArriesgarLetra('y');
+            juego.ArriesgarLetra('z');
+            juego.ArriesgarLetra('q');
+            juego.ArriesgarLetra('w');
+            juego.ArriesgarLetra('t');
             juego.ArriesgarLetra('a');
             juego.ArriesgarLetra('b');
             juego.ArriesgarLetra('u');
             juego.ArriesgarLetra('e');
             juego.ArriesgarLetra('l');
-            juego.ArriesgarLetra('o');
-            juego.CalcularPuntuacion();
-            Assert.Equal(105, juego.CalcularPuntuacion());
+            bool resultado = juego.ArriesgarLetra('o');
+            Assert.True(resultado);
+            int puntuacion = juego.CalcularPuntuacion();
+            Assert.Equal(15, puntuacion); // La puntuación debería ser 15 (1 vida restante * 15 puntos por vida)
         }
 
         [Fact]

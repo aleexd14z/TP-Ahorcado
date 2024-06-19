@@ -499,5 +499,37 @@ namespace TDD
             juego.CalcularPuntuacion();
             Assert.Equal(75, juego.CalcularPuntuacion());
         }
+
+        [Fact]
+        public void DarPista()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('p');
+            var estadoAntesDePista = juego.MostrarEstado();
+            juego.DarPista();
+            var estadoDespuesDePista = juego.MostrarEstado();
+            Assert.NotEqual(estadoAntesDePista, estadoDespuesDePista);
+        }
+
+        [Fact]
+        public void TerminarPartidaGanar()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarPalabra("palabra");  // Jugador gana
+            var mensaje = juego.TerminarPartida();
+            Assert.Contains("¡Felicidades! Has ganado con una puntuación de", mensaje);
+        }
+
+        [Fact]
+        public void TerminarPartidaPerder()
+        {
+            var juego = new Ahorcado("palabra");
+            for (int i = 0; i < 7; i++) 
+            {
+                juego.ArriesgarLetra('x');
+            }
+            var mensaje = juego.TerminarPartida();
+            Assert.Equal("Derrota. Mejor suerte la próxima vez.", mensaje);
+        }
     }
 }

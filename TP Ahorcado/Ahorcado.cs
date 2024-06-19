@@ -85,11 +85,6 @@ namespace TP_Ahorcado
                     letraEncontrada = true;
                 }
             }
-            /* if (!letraEncontrada && !letrasIncorrectas.Contains(letra)) 
-             {
-                 letrasIncorrectas.Add(letra);
-                 intentosRestantes--;
-             } */
             if (!letraEncontrada)
             {
                 if (!letrasIncorrectas.Contains(letra))
@@ -146,7 +141,7 @@ namespace TP_Ahorcado
         {
             puntuacion = 0;
             if (haGanado)
-            {
+            {           
                 int letrasFaltantes = estadoAnterior.Count(letra => letra == '_');
                 puntuacion += (IntentosRestantes * PUNTOS_POR_VIDA);
                 if (letrasFaltantes == 2)
@@ -202,16 +197,15 @@ namespace TP_Ahorcado
 
         public List<char> LetrasIncorrectas { get { return letrasIncorrectas; } }
 
-        private void TerminarPartida()
+        public string TerminarPartida()
         {
             if (haGanado)
             {
                 puntuacion = CalcularPuntuacion();
-                Console.WriteLine($"¡Felicidades! Has ganado con una puntuación de {puntuacion}.");
+                return $"¡Felicidades! Has ganado con una puntuación de {puntuacion}.";
             }
             else
-                Console.WriteLine("Derrota. Mejor suerte la próxima vez.");
+                return "Derrota. Mejor suerte la próxima vez.";
         }
-
     }
 }

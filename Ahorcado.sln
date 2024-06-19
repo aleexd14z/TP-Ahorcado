@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP_Ahorcado", "TP Ahorcado\TP_Ahorcado.csproj", "{B82ECEF8-C021-4B92-8B8F-1EEA0F3D3E3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD", "TDD\TDD.csproj", "{5E8308DB-3294-4E76-85AF-1D32CB8536F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDD", "TDD\TDD.csproj", "{5E8308DB-3294-4E76-85AF-1D32CB8536F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Front", "Front\Front.csproj", "{2BE26AA0-A51D-4AD8-91A8-289C1FD6511E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E8308DB-3294-4E76-85AF-1D32CB8536F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE26AA0-A51D-4AD8-91A8-289C1FD6511E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE26AA0-A51D-4AD8-91A8-289C1FD6511E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE26AA0-A51D-4AD8-91A8-289C1FD6511E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE26AA0-A51D-4AD8-91A8-289C1FD6511E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

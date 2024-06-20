@@ -9,22 +9,42 @@ on:
       - master 
 
 jobs:
-  build:
+
+  build-test:
+    name: Build & Test
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: 'Ahorcado.sln'
+      
     runs-on: windows-latest
 
+    permissions:
+        id-token: write
+        contents: read
+        checks: write
+        
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4.0.0
       with:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore $SOLUTION
 
-    - name: Build the project
-      run: dotnet build --no-restore --configuration Release
+    - name: Build
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
 
-    - name: Run unit tests
-      run: dotnet test --no-build --verbosity normal
+    - name: Test
+      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
+
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: '**/test-results.trx'
+        reporter: dotnet-trx
+        fail-on-errror: true

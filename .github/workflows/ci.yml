@@ -26,19 +26,12 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.SOLUTION }}
+      run: |
+        dotnet clean ${{ env.SOLUTION }}
+        dotnet restore ${{ env.SOLUTION }}
 
     - name: Build
       run: dotnet build ${{ env.SOLUTION }} --configuration ${{ env.BUILD_CONFIG }}
 
     - name: Test
-      run: dotnet test ${{ env.SOLUTION }} --configuration ${{ env.BUILD_CONFIG }} --logger "trx;LogFileName=test-results.trx" || true
-
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: DotNET Tests
-        path: '**/test-results.trx'
-        reporter: dotnet-trx
-        fail-on-error: true
+      run: dotnet test ${{ env.SOLUTION }} --configuration ${{ env.BUILD_CONFIG }}

@@ -29,7 +29,7 @@ jobs:
       run: dotnet restore ${{ env.SOLUTION }}
 
     - name: Build
-      run: dotnet build ${{ env.SOLUTION }} --configuration ${{ env.BUILD_CONFIG }} --platform x64
+      run: dotnet build ${{ env.SOLUTION }} --configuration ${{ env.BUILD_CONFIG }}
 
     - name: Test
       run: dotnet test ${{ env.SOLUTION }} --configuration ${{ env.BUILD_CONFIG }} --logger "trx;LogFileName=test-results.trx" || true

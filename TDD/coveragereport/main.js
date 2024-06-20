@@ -221,7 +221,7 @@ var assemblies = [
   {
     "name": "TP Ahorcado",
     "classes": [
-      { "name": "TP_Ahorcado.Ahorcado", "rp": "TP_Ahorcado_Ahorcado.html", "cl": 123, "ucl": 25, "cal": 148, "tl": 217, "cb": 46, "tb": 56, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "TP_Ahorcado.Ahorcado", "rp": "TP_Ahorcado_Ahorcado.html", "cl": 147, "ucl": 0, "cal": 147, "tl": 211, "cb": 54, "tb": 56, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -230,17 +230,9 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
-      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
-      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
-  {
-    "assembly": "TP Ahorcado", "class": "TP_Ahorcado.Ahorcado", "reportPath": "TP_Ahorcado_Ahorcado.html", "methodName": "DarPista()", "methodShortName": "DarPista()", "fileIndex": 0, "line": 164,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
 ];
 
 var branchCoverageAvailable = true;

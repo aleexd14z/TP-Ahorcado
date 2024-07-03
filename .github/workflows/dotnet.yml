@@ -5,11 +5,9 @@ name: .NET
 
 on:
   push:
-    branches:
-      - "master"
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - "master"
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -36,7 +34,7 @@ jobs:
     - name: Run unit tests and generate coverage report
       run: dotnet test --configuration Release --collect:"XPlat Code Coverage" /p:CoverletOutputFormat=cobertura /p:CoverletOutput=TestResults/
       working-directory: ./TDD
-
+           
     - name: Upload coverage report to GitHub
       uses: actions/upload-artifact@v4.3.3
       with:
@@ -44,16 +42,16 @@ jobs:
        path: ./TestTDD/TestResults/coverage.xml
 
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4.2.1
       with:
         java-version: 17
         distribution: 'zulu' 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     
     - name: Cache SonarCloud packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4.0.2
       with:
         path: ~\sonar\cache
         key: ${{ runner.os }}-sonar
@@ -61,7 +59,7 @@ jobs:
    
     - name: Cache SonarCloud scanner
       id: cache-sonar-scanner
-      uses: actions/cache@v3
+      uses: actions/cache@v4.0.2
       with:
         path: .\.sonar\scanner
         key: ${{ runner.os }}-sonar-scanner
@@ -84,5 +82,7 @@ jobs:
       shell: powershell
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"aleexd14z_TP-Ahorcado" /o:"aleexd14z" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        dotnet build
+        dotnet build --configuration Release
+        dotnet-coverage collect 'dotnet test' -f xml -o 'coverage.xml'
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+

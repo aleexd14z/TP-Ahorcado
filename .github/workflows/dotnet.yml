@@ -73,7 +73,7 @@ jobs:
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"aleexd14z_TP-Ahorcado" /o:"aleexd14z" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
         dotnet build
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}
+        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
     - name: Upload coverage report to GitHub
       uses: actions/upload-artifact@v4.3.3

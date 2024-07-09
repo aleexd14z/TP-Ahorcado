@@ -36,9 +36,9 @@ jobs:
       - name: Generate coverage report
         run: |
           dotnet tool run reportgenerator \
-            -reports:"./TestResults/**/*.xml" \
-            -targetdir:"./coverage-report" \
-            -reporttypes:"Html"
+            "-reports:./TestResults/**/*.xml" \
+            "-targetdir:./coverage-report" \
+            "-reporttypes:Html"
 
       - name: Upload coverage report artifact
         uses: actions/upload-artifact@v2

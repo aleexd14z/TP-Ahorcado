@@ -205,7 +205,7 @@ namespace TP_Ahorcado
                 return $"¡Felicidades! Has ganado con una puntuación de {puntuacion}.";
             }
             else
-                return "Derrota. Mejor suerte la próxima vez.";
+                return "Derrota. Mejor suerte la próxima vez."; //nada
         }
     }
 }

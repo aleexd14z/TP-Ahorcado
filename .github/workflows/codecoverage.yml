@@ -32,7 +32,7 @@ jobs:
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
         
       - name: Add ReportGenerator package
-        run: dotnet add package reportgenerator --version <version_number>
+        run: dotnet add package reportgenerator --version 5.3.7
              
       - name: Run tests and collect coverage
         run: dotnet test --no-build --collect:"XPlat Code Coverage" --results-directory ./TestResults

@@ -22,10 +22,21 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Update code coverageg badge
-        run: npx update-badge
+      - name: Restore dependencies
+        run: dotnet restore
 
-      - name: Set code coverage commit status
-        run: npx set-gh-status
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        run: dotnet build --no-restore
+        
+      - name: Run tests and collect coverage
+        run: dotnet test --no-build --collect:"XPlat Code Coverage" --results-directory ./TestResults
+
+      - name: Generate coverage report
+        run: |
+          reportgenerator -reports:"./TestResults/**/*.xml" -targetdir:"coverage-report" -reporttypes:HtmlInline_AzurePipelines
+
+      - name: Upload coverage report artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage-report

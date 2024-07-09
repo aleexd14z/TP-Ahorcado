@@ -16,13 +16,76 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+        
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      
+    - name: Create coverage directory
+      run: mkdir -p ./TDD/coverage
+
+    - name: Run unit tests and generate coverage report
+      run: dotnet test --no-build --collect:"XPlat Code Coverage" /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage/
+      working-directory: ./TDD
+
+    - name: List test result files
+      run: dir ./TDD/coverage
+           
+    - name: Upload coverage report to GitHub
+      uses: actions/upload-artifact@v4.3.3
+      with:
+       name: code-coverage-report
+       path: ./TDD/coverage/coverage.opencover.xml
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4.2.1
+      with:
+        java-version: 17
+        distribution: 'zulu' 
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v4.0.2
+      with:
+        path: ~\sonar\cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+   
+    - name: Cache SonarCloud scanner
+      id: cache-sonar-scanner
+      uses: actions/cache@v4.0.2
+      with:
+        path: .\.sonar\scanner
+        key: ${{ runner.os }}-sonar-scanner
+        restore-keys: ${{ runner.os }}-sonar-scanner
+  
+    - name: Install SonarCloud scanner
+      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+      shell: powershell
+      run: |
+        New-Item -Path .\.sonar\scanner -ItemType Directory
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+
+    - name: Install dotnet-coverage tool
+      run: dotnet tool install --global dotnet-coverage
+            
+    - name: Build and analyze
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      shell: powershell
+      run: |
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"aleexd14z_TP-Ahorcado" /o:"aleexd14z" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+        dotnet build --configuration Release
+        dotnet-coverage collect 'dotnet test' -f xml -o 'coverage.xml'
+        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+

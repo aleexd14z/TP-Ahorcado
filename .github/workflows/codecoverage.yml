@@ -35,7 +35,7 @@ jobs:
          
       - name: Generate coverage report
         run: |
-          ./reportgenerator/dotnet-reportgenerator-globaltool \
+          dotnet tool run reportgenerator \
             -reports:"./TestResults/**/*.xml" \
             -targetdir:"./coverage-report" \
             -reporttypes:"Html"

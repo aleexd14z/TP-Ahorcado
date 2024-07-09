@@ -35,9 +35,9 @@ jobs:
          
       - name: Generate coverage report
         run: |
-          ./tools/dotnet-reportgenerator-globaltool \
+          ./reportgenerator/dotnet-reportgenerator-globaltool \
             -reports:"./TestResults/**/*.xml" \
-            -targetdir:"coverage-report" \
+            -targetdir:"./coverage-report" \
             -reporttypes:"Html"
 
       - name: Upload coverage report artifact

@@ -8,17 +8,16 @@ namespace TP_Ahorcado
 {
     public class Ahorcado
     {
-        private string palabraSecreta;
-        private int intentosRestantes;
-        private bool haGanado;
-        private char[] estadoAux;
-        private List<char> letrasIncorrectas;
-        private string nombreUsuario;
-        private int puntuacion;
-        private string estadoAnterior;
-        private const int PUNTOS_POR_VIDA = 15;
-        private const int VALOR_POR_LETRA_FALTANTE = 50;
-        private const int PUNTUACION_MAXIMA = 100000;
+        public string palabraSecreta;
+        public int intentosRestantes;
+        public bool haGanado;
+        public char[] estadoAux;
+        public List<char> letrasIncorrectas;
+        public int puntuacion;
+        public string estadoAnterior;
+        public const int PUNTOS_POR_VIDA = 15;
+        public const int VALOR_POR_LETRA_FALTANTE = 50;
+        public const int PUNTUACION_MAXIMA = 100000;
 
 
         private static readonly Dictionary<string, List<string>> bancosDePalabras = new Dictionary<string, List<string>>
@@ -43,6 +42,18 @@ namespace TP_Ahorcado
             estadoAux = new string('_', palabraSecreta.Length).ToCharArray();
             letrasIncorrectas = new List<char>();
             estadoAnterior = new string(estadoAux);
+        }
+
+        public string validarSecretWord()
+        {
+            if (string.IsNullOrWhiteSpace(palabraSecreta) || !palabraSecreta.All(char.IsLetter))
+            {
+                return "Palabra secreta invalida";
+            }
+            else
+            {
+                return "Valida";
+            }
         }
 
         private static string SeleccionarPalabra(string dificultad)
@@ -127,7 +138,7 @@ namespace TP_Ahorcado
             return letrasCorrectas;
         }
 
-        public bool IngresarNombre(string nombre)
+       /* public bool IngresarNombre(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre) || !nombre.All(char.IsLetter))
             {
@@ -135,7 +146,7 @@ namespace TP_Ahorcado
             }
             nombreUsuario = nombre;
             return true;
-        }
+        } */
 
         public int CalcularPuntuacion()
         {
@@ -206,6 +217,12 @@ namespace TP_Ahorcado
             }
             else
                 return "Derrota. Mejor suerte la próxima vez."; //nada
+        }
+
+        public bool checkearEstadoActual()
+        {
+            if (estadoAux.Contains('_')) return false;
+            else return true;
         }
     }
 }

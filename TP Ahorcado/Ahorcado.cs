@@ -24,7 +24,7 @@ namespace TP_Ahorcado
         {
             { "facil", new List<string> { "gato", "perro", "casa", "sol", "mesa" } },
             { "medio", new List<string> { "elefante", "mariposa", "murcielago", "bicicleta" } },
-            { "dificil", new List<string> { "otorrinolaringologia", "electroencefalograma", "paralelepipedo", "anticonstitucionalidad" } }        
+            { "dificil", new List<string> { "otorrinolaringologia", "electroencefalograma", "paralelepipedo", "anticonstitucionalidad" } }
         };
 
         public Ahorcado(string entrada)
@@ -84,7 +84,7 @@ namespace TP_Ahorcado
             if (!char.IsLetter(letra) || estadoAux.Contains(letra))
                 return false;
 
-            letra = char.ToLower(letra);   
+            letra = char.ToLower(letra);
             bool letraEncontrada = false;
             estadoAnterior = new string(estadoAux);
 
@@ -138,21 +138,21 @@ namespace TP_Ahorcado
             return letrasCorrectas;
         }
 
-       /* public bool IngresarNombre(string nombre)
-        {
-            if (string.IsNullOrWhiteSpace(nombre) || !nombre.All(char.IsLetter))
-            {
-                return false;
-            }
-            nombreUsuario = nombre;
-            return true;
-        } */
+        /* public bool IngresarNombre(string nombre)
+         {
+             if (string.IsNullOrWhiteSpace(nombre) || !nombre.All(char.IsLetter))
+             {
+                 return false;
+             }
+             nombreUsuario = nombre;
+             return true;
+         } */
 
         public int CalcularPuntuacion()
         {
             puntuacion = 0;
             if (haGanado)
-            {           
+            {
                 int letrasFaltantes = estadoAnterior.Count(letra => letra == '_');
                 puntuacion += (IntentosRestantes * PUNTOS_POR_VIDA);
                 if (letrasFaltantes == 2)
@@ -223,6 +223,7 @@ namespace TP_Ahorcado
         {
             if (estadoAux.Contains('_')) return false;
             else return true;
-        }
+        } 
+        //prueba
     }
 }

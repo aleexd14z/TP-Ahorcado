@@ -531,5 +531,47 @@ namespace TDD
             var mensaje = juego.TerminarPartida();
             Assert.Equal("Derrota. Mejor suerte la próxima vez.", mensaje);
         }
+
+        [Fact]
+        public void IngresoNull()
+        {
+            var juego = new Ahorcado("");
+            var result = juego.validarSecretWord();
+            Assert.Equal("Palabra secreta invalida", result);
+        }
+
+        [Fact]
+        public void IngresoCaracteresNoLetras()
+        {
+            var juego = new Ahorcado("palabra1");
+            var result = juego.validarSecretWord();
+            Assert.Equal("Palabra secreta invalida", result);
+        }
+
+        [Fact]
+        public void ValidarSecretWord_ReturnsValid_WhenWordIsValid()
+        {
+            var juego = new Ahorcado("palabra");
+            var result = juego.validarSecretWord();
+            Assert.Equal("Valida", result);
+        }
+
+        [Fact]
+        public void TieneGuionBajo()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarLetra('p');
+            var result = juego.checkearEstadoActual();
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void NoTieneGuionBajo()
+        {
+            var juego = new Ahorcado("palabra");
+            juego.ArriesgarPalabra("palabra");
+            var result = juego.checkearEstadoActual();
+            Assert.True(result);
+        }
     }
 }

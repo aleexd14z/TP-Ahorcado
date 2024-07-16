@@ -224,6 +224,5 @@ namespace TP_Ahorcado
             if (estadoAux.Contains('_')) return false;
             else return true;
         } 
-        //prueba
     }
 }

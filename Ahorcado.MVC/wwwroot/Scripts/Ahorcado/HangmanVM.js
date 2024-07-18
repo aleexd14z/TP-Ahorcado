@@ -117,13 +117,13 @@ HangmanVM = function (data) {
         };
         switch (type) {
             case 'loss':
-                opts.title = "Oh!!";
+                opts.title = "Oh!";
                 opts.text = "Has Perdido!! Más suerte la próxima!";
                 opts.type = "error";
                 break;
             case 'win':
-                opts.title = "Felicitaciones!!!";
-                opts.text = "Has ganado!! Enséñales a los perdedores para que aprendan!";
+                opts.title = "Felicitaciones!";
+                opts.text = "Ganaste. Felicitaciones.";
                 opts.type = "success";
                 break;
         }

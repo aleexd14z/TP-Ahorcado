@@ -20,12 +20,21 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+      
+      - name: Install ChromeDriver
+        uses: nanasess/setup-chromedriver@v1
 
       - name: Restore dependencies
         run: dotnet restore
 
       - name: Build
         run: dotnet build --no-restore
+        
+      - name: Start the application
+        run: |
+          dotnet run --project Ahorcado.MVC/AhorcadoMVC.csproj &
+          Start-Sleep -s 20 # Espera 20 segundos para que la aplicación se inicie completamente
+
         
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool

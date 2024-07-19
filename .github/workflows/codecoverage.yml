@@ -32,9 +32,8 @@ jobs:
         
       - name: Start the application
         run: |
-          dotnet run --project Ahorcado.MVC/AhorcadoMVC.csproj &
+          dotnet run --project Ahorcado.MVC/AhorcadoMVC.csproj --urls "http://localhost:5000" &
           Start-Sleep -s 20 # Espera 20 segundos para que la aplicación se inicie completamente
-
         
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool

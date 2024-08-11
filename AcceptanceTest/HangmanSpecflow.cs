@@ -13,7 +13,7 @@ namespace Ahorcado.UIAutomation
     public class HangmanSpecflow
     {
         IWebDriver driver;
-        String baseURL = "https://localhost:44357";
+        String baseURL = "https://localhost:7260";
         int chancesLeftAnt;
 
         [BeforeScenario]
@@ -28,7 +28,7 @@ namespace Ahorcado.UIAutomation
             driver = new ChromeDriver(chromeOptions);
         }
 
-     /*   //Primer test - perder el juego
+         //Primer test - perder el juego
         [Given(@"I have entered Ahorcado as the wordToGuess")]
         public void GivenIHaveEnteredAhorcadoAsTheWordToGuess()
         {
@@ -72,16 +72,16 @@ namespace Ahorcado.UIAutomation
             Thread.Sleep(1000);
             Assert.IsTrue(loss);
             Thread.Sleep(1000);
-        } */
+        } 
 
         [AfterScenario]
         public void TestCleanUp()
         {
-            driver.Quit();
+         //   driver.Quit();
         }
 
 
-      /*  //Segundo test - acertar una letra
+        //Segundo test - acertar una letra
         [Given(@"I have entered Hola as the wordToGuess")]
         public void GivenIHaveEnteredHolaAsTheWordToGuess()
         {
@@ -120,7 +120,7 @@ namespace Ahorcado.UIAutomation
             Thread.Sleep(1000);
             Assert.IsTrue(hit);
             Thread.Sleep(1000);
-        }  */
+        }  
 
 
         //Tercer test - Insertar un numero
@@ -163,7 +163,7 @@ namespace Ahorcado.UIAutomation
             Thread.Sleep(1000);
             Assert.IsTrue(invalid);
             Thread.Sleep(1000);
-        }
+        } 
 
 
 
@@ -202,16 +202,18 @@ namespace Ahorcado.UIAutomation
         {
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             var guessingWord = driver.FindElement(By.Id("GuessingWord"));
-            var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
+            //   var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
+            var mensaje = driver.FindElement(By.CssSelector(".brighttheme-success .ui-pnotify-text"));
+
             var win = guessingWord.GetAttribute("value").Replace(" ", String.Empty) == txtPalabra.GetAttribute("value");
-            var correctMesagge = "Ganaste. Felicitaciones." == mensaje.Text;
+            var correctMesagge = "Ganaste. Felicitaciones." == mensaje.Text.Trim();
             Thread.Sleep(1000);
             Assert.IsTrue(win && correctMesagge);
             Thread.Sleep(1000);
         }
 
 
-        /*  //Quinto test - Insertar palabra secreta no alfabetica
+          //Quinto test - Insertar palabra secreta no alfabetica
           [Given(@"I have entered 123 as the wordToGuess")]
           public void GivenIhaveentered123asthewordToGuess()
           {
@@ -235,10 +237,11 @@ namespace Ahorcado.UIAutomation
           {
               var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
               var invalid = "Palabra secreta invalida" == mensaje.Text;
-              Thread.Sleep(1000);
+            Console.WriteLine($"Mensaje mostrado: {mensaje.Text}");
+            Thread.Sleep(1000);
               Assert.IsTrue(invalid);
               Thread.Sleep(1000);
-          } */
+          } 
 
 
     }

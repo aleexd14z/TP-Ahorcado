@@ -77,6 +77,7 @@ namespace Ahorcado.MVC.Controllers
         {
             bool palabraCorrecta = Ahorcado.ArriesgarPalabra(model.LetterTyped);
             model.Message = palabraCorrecta ? "¡Palabra correcta!" : "Palabra incorrecta.";
+            Console.WriteLine($"Mensaje generado: {model.Message}");
             model.Win = Ahorcado.checkearEstadoActual();
             model.ChancesLeft = Ahorcado.intentosRestantes;
             model.WrongLetters = string.Empty;

@@ -81,7 +81,7 @@ namespace Ahorcado.MVC.Controllers
             model.Win = Ahorcado.checkearEstadoActual();
             model.ChancesLeft = Ahorcado.intentosRestantes;
             model.WrongLetters = string.Empty;
-            foreach (var wLetter in Ahorcado.letrasIncorrectas)
+            foreach (var wLetter in Ahorcado.letrasIncorrectas) //
             {
                 model.WrongLetters += wLetter + ",";
             }

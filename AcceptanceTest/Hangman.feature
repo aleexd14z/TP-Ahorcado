@@ -27,3 +27,8 @@ Scenario: Hit a Secret Word
 Scenario: Insert a non-alphabetic Secret Word
 	Given I have entered 123 as the wordToGuess
 	Then It should tell me that the word is invalid
+
+Scenario: Try to guess the same letter twice
+    Given I have entered Sexto as the wordToGuess
+    When I enter X as the typedLetter one time and I enter X as the typedLetter again
+    Then The number of chances left should remain the same

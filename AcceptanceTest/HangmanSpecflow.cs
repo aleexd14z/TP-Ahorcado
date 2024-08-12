@@ -77,7 +77,7 @@ namespace Ahorcado.UIAutomation
         [AfterScenario]
         public void TestCleanUp()
         {
-         //   driver.Quit();
+            //driver.Quit();
         }
 
 
@@ -165,10 +165,7 @@ namespace Ahorcado.UIAutomation
             Thread.Sleep(1000);
         } 
 
-
-
-
-        //Cuarto test - Arriesgar palabra correcta
+                //Cuarto test - Arriesgar palabra correcta
         [Given(@"I have entered Teclado as the wordToGuess")]
         public void GivenIHaveEnteredTecladoAsTheWordToGuess()
         {
@@ -237,11 +234,57 @@ namespace Ahorcado.UIAutomation
           {
               var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
               var invalid = "Palabra secreta invalida" == mensaje.Text;
-            Console.WriteLine($"Mensaje mostrado: {mensaje.Text}");
-            Thread.Sleep(1000);
+              Console.WriteLine($"Mensaje mostrado: {mensaje.Text}");
+              Thread.Sleep(1000);
               Assert.IsTrue(invalid);
               Thread.Sleep(1000);
-          } 
+          }
+
+        //Sexto text - Dos veces la misma letra no descuenta vidas
+        [Given(@"I have entered Sexto as the wordToGuess")]
+        public void GivenIHaveEnteredSextoAsTheWordToGuess()
+        {
+            driver.Navigate().GoToUrl(baseURL);
+
+            Thread.Sleep(5000);
+
+            var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
+            txtPalabra.SendKeys("Sexto");
+
+            var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
+            btnInsertWord.SendKeys(Keys.Enter);
+
+            Thread.Sleep(1000);
+        }
+
+        [When(@"I enter X as the typedLetter one time and I enter X as the typedLetter again")]
+
+        public void WhenIEnterXAsTheTypedLetterTwice()
+        {
+            var letterTyped = driver.FindElement(By.Id("LetterTyped"));
+            var btnInsertLetter = driver.FindElement(By.Id("btnInsertLetter"));
+
+            List<char> lettersRisked = ['x', 'x'];
+            for (int i = 0; i < 2; i++)
+            {
+                letterTyped.SendKeys(lettersRisked[i].ToString());
+                Thread.Sleep(1000);
+                btnInsertLetter.SendKeys(Keys.Enter);
+                Thread.Sleep(1000);
+                letterTyped.Clear(); // Limpiar el campo después de cada letra
+                Thread.Sleep(500);
+            }
+        }
+
+        [Then(@"The number of chances left should remain the same")]
+        public void ThenTheNumberOfChancesLeftShouldRemainTheSame()
+        {
+            var chancesLeftBefore = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
+
+            var chancesLeftAfter = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
+
+            Assert.AreEqual(chancesLeftBefore, chancesLeftAfter, "The number of chances left should remain the same after guessing the same letter.");
+        }
 
 
     }

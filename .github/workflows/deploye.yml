@@ -18,6 +18,11 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: Start Web Server
+      run: |
+        dotnet publish -c Release -o ./publish
+        dotnet ./publish/TP_Ahorcado.dll &
+      working-directory: ./src
     - name: Test
       run: dotnet test --no-build
     - name: Publish

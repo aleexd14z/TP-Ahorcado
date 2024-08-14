@@ -40,12 +40,12 @@ namespace Ahorcado.UIAutomation
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             txtPalabra.SendKeys("Ahorcado");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
 
             var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
             btnInsertWord.SendKeys(Keys.Enter);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }
 
         [When(@"I enter X as the typedLetter five times")]
@@ -57,23 +57,23 @@ namespace Ahorcado.UIAutomation
             for (int i = 0; i < 7; i++)
             {
                 letterTyped.SendKeys(lettersRisked[i].ToString());
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 btnInsertLetter.SendKeys(Keys.Enter);
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 letterTyped.Clear(); // Limpiar el campo después de cada letra
-                Thread.Sleep(500);
+                Thread.Sleep(5000);
             }
         }
 
         [Then(@"I should be told that I lost")]
         public void ThenIShouldBeToldThatILost()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
             var loss = Convert.ToInt32(chancesLeft.GetAttribute("value")) == 0;
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             Assert.IsTrue(loss);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         } 
 
         [AfterScenario]
@@ -83,7 +83,7 @@ namespace Ahorcado.UIAutomation
         }
 
 
-        //Segundo test - acertar una letraa
+        //Segundo test - acertar una letra
         [Given(@"I have entered Hola as the wordToGuess")]
         public void GivenIHaveEnteredHolaAsTheWordToGuess()
         {
@@ -94,37 +94,37 @@ namespace Ahorcado.UIAutomation
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             txtPalabra.SendKeys("Hola");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
 
             var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
             btnInsertWord.SendKeys(Keys.Enter);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }
 
         [When(@"I enter A as the typedLetter one time")]
         public void WhenIEnterAAsTheTypedLetterOneTime()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
             chancesLeftAnt = Convert.ToInt32(chancesLeft.GetAttribute("value"));
             var letterTyped = driver.FindElement(By.Id("LetterTyped"));
             var btnInsertLetter = driver.FindElement(By.Id("btnInsertLetter"));
             letterTyped.SendKeys("A");
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             btnInsertLetter.SendKeys(Keys.Enter);
         }
 
         [Then(@"I should be told that I hit the letter")]
         public void ThenIShouldBeToldThatIHitTheLetter()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var hit = Convert.ToInt32(chancesLeft.GetAttribute("value")) == chancesLeftAnt;
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             Assert.IsTrue(hit);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }  
 
 
@@ -139,12 +139,12 @@ namespace Ahorcado.UIAutomation
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             txtPalabra.SendKeys("computadora");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
 
             var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
             btnInsertWord.SendKeys(Keys.Enter);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }
 
         [When(@"I enter 4 as the typedLetter one time")]
@@ -153,7 +153,7 @@ namespace Ahorcado.UIAutomation
             var letterTyped = driver.FindElement(By.Id("LetterTyped"));
             var btnInsertLetter = driver.FindElement(By.Id("btnInsertLetter"));
             letterTyped.SendKeys("4");
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             btnInsertLetter.SendKeys(Keys.Enter);
         }
 
@@ -162,13 +162,13 @@ namespace Ahorcado.UIAutomation
         [Then(@"It should tell me that the letter is invalid")]
         public void ThenIShouldBeToldThatTheLetterIsInvalid()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var invalid = "Incorrecto" == mensaje.Text;
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             Assert.IsTrue(invalid);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         } 
 
                 //Cuarto test - Arriesgar palabra correcta
@@ -182,12 +182,12 @@ namespace Ahorcado.UIAutomation
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             txtPalabra.SendKeys("teclado");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
 
             var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
             btnInsertWord.SendKeys(Keys.Enter);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }
 
         [When(@"I enter Teclado as the typedLetter")]
@@ -196,14 +196,14 @@ namespace Ahorcado.UIAutomation
             var letterTyped = driver.FindElement(By.Id("LetterTyped"));
             var btnRiskWord = driver.FindElement(By.Id("btnRiskWord"));
             letterTyped.SendKeys("teclado");
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             btnRiskWord.SendKeys(Keys.Enter);
         }
 
         [Then(@"I should be told that I win")]
         public void ThenIShouldBeToldThatIWin()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             var guessingWord = driver.FindElement(By.Id("GuessingWord"));
             //   var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
@@ -211,9 +211,9 @@ namespace Ahorcado.UIAutomation
 
             var win = guessingWord.GetAttribute("value").Replace(" ", String.Empty) == txtPalabra.GetAttribute("value");
             var correctMesagge = "Ganaste. Felicitaciones." == mensaje.Text.Trim();
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             Assert.IsTrue(win && correctMesagge);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }
 
 
@@ -228,24 +228,24 @@ namespace Ahorcado.UIAutomation
               var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
               txtPalabra.SendKeys("123");
 
-              Thread.Sleep(1000);
+              Thread.Sleep(5000);
 
               var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
               btnInsertWord.SendKeys(Keys.Enter);
 
-              Thread.Sleep(1000);
+              Thread.Sleep(5000);
           }
 
           [Then(@"It should tell me that the word is invalid")]
           public void ThenIShouldBeToldThatTheWordIsInvalid()
           {
-              Thread.Sleep(1000);
+              Thread.Sleep(5000);
               var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
               var invalid = "Palabra secreta invalida" == mensaje.Text;
               Console.WriteLine($"Mensaje mostrado: {mensaje.Text}");
-              Thread.Sleep(1000);
+              Thread.Sleep(5000);
               Assert.IsTrue(invalid);
-              Thread.Sleep(1000);
+              Thread.Sleep(5000);
           }
 
         //Sexto text - Dos veces la misma letra no descuenta vidas
@@ -262,7 +262,7 @@ namespace Ahorcado.UIAutomation
             var btnInsertWord = driver.FindElement(By.Id("btnInsertWord"));
             btnInsertWord.SendKeys(Keys.Enter);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
         }
 
         [When(@"I enter X as the typedLetter one time and I enter X as the typedLetter again")]
@@ -276,22 +276,22 @@ namespace Ahorcado.UIAutomation
             for (int i = 0; i < 2; i++)
             {
                 letterTyped.SendKeys(lettersRisked[i].ToString());
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 btnInsertLetter.SendKeys(Keys.Enter);
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 letterTyped.Clear(); // Limpiar el campo después de cada letra
-                Thread.Sleep(500);
+                Thread.Sleep(5000);
             }
         }
 
         [Then(@"The number of chances left should remain the same")]
         public void ThenTheNumberOfChancesLeftShouldRemainTheSame()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
 
             var chancesLeftBefore = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
 
             var chancesLeftAfter = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
 

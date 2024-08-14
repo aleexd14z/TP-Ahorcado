@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Publish the project
-      run: dotnet publish Ahorcado.MVC/AhorcadoMVC.csproj -c Release -o ${{ github.workspace }}/publish
+      run: dotnet publish ./Ahorcado.MVC/AhorcadoMVC.csproj -c Release -o ${{ github.workspace }}/publish
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:

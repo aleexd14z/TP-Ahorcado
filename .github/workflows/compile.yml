@@ -30,8 +30,3 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test --no-build --verbosity normal
-
-      - name: Run acceptance tests
-        run: dotnet test --no-build --verbosity normal --filter FullyQualifiedName~AcceptanceTest
-        env:
-          ASPNETCORE_ENVIRONMENT: "Development"  # Asegúrate de configurar el entorno según sea necesario

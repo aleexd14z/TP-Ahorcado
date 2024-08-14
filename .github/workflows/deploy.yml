@@ -43,7 +43,9 @@ jobs:
     - name: emirdeliz-chromedriver
   # You may pin to the exact commit or the version.
   # uses: emirdeliz/emirdeliz-chromedriver@90fc00f5358fd7b4f44a6854d461c1969be4c31c
-      uses: emirdeliz/emirdeliz-chromedriver@v0.0.6          
+      uses: emirdeliz/emirdeliz-chromedriver@v0.0.6
+      with:
+        arch: win32
       
     - name: Test
       run: dotnet test --no-build --verbosity normal

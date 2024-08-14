@@ -158,6 +158,7 @@ namespace Ahorcado.UIAutomation
         [Then(@"It should tell me that the letter is invalid")]
         public void ThenIShouldBeToldThatTheLetterIsInvalid()
         {
+            Thread.Sleep(1000);
             var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
             Thread.Sleep(1000);
             var invalid = "Incorrecto" == mensaje.Text;
@@ -198,6 +199,7 @@ namespace Ahorcado.UIAutomation
         [Then(@"I should be told that I win")]
         public void ThenIShouldBeToldThatIWin()
         {
+            Thread.Sleep(1000);
             var txtPalabra = driver.FindElement(By.Id("WordToGuess"));
             var guessingWord = driver.FindElement(By.Id("GuessingWord"));
             //   var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
@@ -233,6 +235,7 @@ namespace Ahorcado.UIAutomation
           [Then(@"It should tell me that the word is invalid")]
           public void ThenIShouldBeToldThatTheWordIsInvalid()
           {
+              Thread.Sleep(1000);
               var mensaje = driver.FindElement(By.ClassName("ui-pnotify-text"));
               var invalid = "Palabra secreta invalida" == mensaje.Text;
               Console.WriteLine($"Mensaje mostrado: {mensaje.Text}");

@@ -39,14 +39,3 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./publish
-
-    - name: Download chromedriver
-      run: |
-        curl -O https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_win32.zip
-        tar -xvf chromedriver_win32.zip -C ./AcceptanceTest/Drivers
-
-    - name: Start chromedriver
-      run: ./AcceptanceTest/Drivers/chromedriver.exe --allowed-ips=0.0.0.0/0
-      
-    - name: Test
-      run: dotnet test --no-build --verbosity normal

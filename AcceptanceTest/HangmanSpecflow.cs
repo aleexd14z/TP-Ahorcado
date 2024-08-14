@@ -81,7 +81,7 @@ namespace Ahorcado.UIAutomation
         }
 
 
-        //Segundo test - acertar una letra
+        //Segundo test - acertar una letraa
         [Given(@"I have entered Hola as the wordToGuess")]
         public void GivenIHaveEnteredHolaAsTheWordToGuess()
         {

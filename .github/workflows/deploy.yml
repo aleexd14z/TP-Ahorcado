@@ -40,16 +40,13 @@ jobs:
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./publish
 
-    - name: emirdeliz-chromedriver
-  # You may pin to the exact commit or the version.
-  # uses: emirdeliz/emirdeliz-chromedriver@90fc00f5358fd7b4f44a6854d461c1969be4c31c
-      uses: emirdeliz/emirdeliz-chromedriver@v0.0.6
-      with:
-        arch: win32
-
-    - name: Start ChromeDriver
+    - name: Download chromedriver
       run: |
-        .\chromedriver\chromedriver.exe --allowed-ips=0.0.0.0/0 # Permitir conexiones desde cualquier IP, ajusta según sea necesario
+        curl -O https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_win32.zip
+        tar -xvf chromedriver_win32.zip -C ./AcceptanceTest/Drivers
+
+    - name: Start chromedriver
+      run: ./AcceptanceTest/Drivers/chromedriver.exe --allowed-ips=0.0.0.0/0
       
     - name: Test
       run: dotnet test --no-build --verbosity normal

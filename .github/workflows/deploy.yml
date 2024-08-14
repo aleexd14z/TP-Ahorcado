@@ -1,0 +1,52 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: deploy
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  AZURE_WEBAPP_NAME: "agilesv2"
+  
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore
+      
+    - name: Publish the project
+      run: dotnet publish ./Ahorcado.MVC/AhorcadoMVC.csproj --configuration Release --output ./publish
+      
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ./publish
+
+    - name: Download chromedriver
+      run: |
+        curl -O https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_win32.zip
+        tar -xvf chromedriver_win32.zip -C ./AcceptanceTest/Drivers
+
+    - name: Start chromedriver
+      run: ./AcceptanceTest/Drivers/chromedriver.exe --allowed-ips=0.0.0.0/0
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal

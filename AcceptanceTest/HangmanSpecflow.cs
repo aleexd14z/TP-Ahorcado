@@ -68,6 +68,7 @@ namespace Ahorcado.UIAutomation
         [Then(@"I should be told that I lost")]
         public void ThenIShouldBeToldThatILost()
         {
+            Thread.Sleep(1000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
             var loss = Convert.ToInt32(chancesLeft.GetAttribute("value")) == 0;
             Thread.Sleep(1000);
@@ -104,6 +105,7 @@ namespace Ahorcado.UIAutomation
         [When(@"I enter A as the typedLetter one time")]
         public void WhenIEnterAAsTheTypedLetterOneTime()
         {
+            Thread.Sleep(1000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
             chancesLeftAnt = Convert.ToInt32(chancesLeft.GetAttribute("value"));
             var letterTyped = driver.FindElement(By.Id("LetterTyped"));
@@ -116,6 +118,7 @@ namespace Ahorcado.UIAutomation
         [Then(@"I should be told that I hit the letter")]
         public void ThenIShouldBeToldThatIHitTheLetter()
         {
+            Thread.Sleep(1000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
             var hit = Convert.ToInt32(chancesLeft.GetAttribute("value")) == chancesLeftAnt;
             Thread.Sleep(1000);
@@ -283,7 +286,11 @@ namespace Ahorcado.UIAutomation
         [Then(@"The number of chances left should remain the same")]
         public void ThenTheNumberOfChancesLeftShouldRemainTheSame()
         {
+            Thread.Sleep(1000);
+
             var chancesLeftBefore = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
+
+            Thread.Sleep(1000);
 
             var chancesLeftAfter = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
 

@@ -120,6 +120,7 @@ namespace Ahorcado.UIAutomation
         {
             Thread.Sleep(1000);
             var chancesLeft = driver.FindElement(By.Id("ChancesLeft"));
+            Thread.Sleep(1000);
             var hit = Convert.ToInt32(chancesLeft.GetAttribute("value")) == chancesLeftAnt;
             Thread.Sleep(1000);
             Assert.IsTrue(hit);

@@ -9,7 +9,7 @@ namespace Ahorcado.MVC.Controllers
 {
     public class AhorcadoController : Controller
     {
-        public static TP_Ahorcado.Ahorcado Ahorcado { get; set; } = null!; 
+        public static TP_Ahorcado.Ahorcado? Ahorcado { get; set; } = null!; 
 
         public ActionResult Index()
         {
@@ -61,11 +61,11 @@ namespace Ahorcado.MVC.Controllers
                 }
                 model.LetterTyped = string.Empty;
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 model.Message = "Ingrese un caracter válido";
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 model.Message = "Ingrese una letra o palabra";
             }
@@ -81,7 +81,7 @@ namespace Ahorcado.MVC.Controllers
             model.Win = Ahorcado.checkearEstadoActual();
             model.ChancesLeft = Ahorcado.intentosRestantes;
             model.WrongLetters = string.Empty;
-            foreach (var wLetter in Ahorcado.letrasIncorrectas) //
+            foreach (var wLetter in Ahorcado.letrasIncorrectas) 
             {
                 model.WrongLetters += wLetter + ",";
             }

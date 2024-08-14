@@ -13,22 +13,23 @@ namespace Ahorcado.UIAutomation
     public class HangmanSpecflow
     {
         IWebDriver driver;
-        String baseURL = "https://localhost:7260";
+        String baseURL = "https://agilesv2.azurewebsites.net/";
         int chancesLeftAnt;
 
         [BeforeScenario]
         public void TestInitialize()
         {
             ChromeOptions chromeOptions = new ChromeOptions();
-            //var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-            chromeOptions.BinaryLocation = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+            //var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers\chromedriver.exe";
+            var path = AppDomain.CurrentDomain.BaseDirectory + @"../../../Drivers\chromedriver.exe";
+            //chromeOptions.BinaryLocation = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
             chromeOptions.AddArgument("--start-maximized"); // Opcional: maximiza la ventana del navegador
 
-            //driver = new ChromeDriver(path, chromeOptions);
-            driver = new ChromeDriver(chromeOptions);
+            driver = new ChromeDriver(path, chromeOptions);
+            //driver = new ChromeDriver(chromeOptions);
         }
 
-         //Primer test - perder el juego
+        //Primer test - perder el juego
         [Given(@"I have entered Ahorcado as the wordToGuess")]
         public void GivenIHaveEnteredAhorcadoAsTheWordToGuess()
         {

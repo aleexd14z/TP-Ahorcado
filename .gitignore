@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AhorcadoAcceptanteTest/Hangman.feature.cs
+/AhorcadoAcceptanteTest/Hangman.feature
+/AhorcadoAcceptanteTest/UnitTest1.cs
+/AhorcadoAcceptanteTest/HangmanSpecflow.cs
+/AhorcadoAcceptanteTest/packages.config
+/AhorcadoAcceptanteTest/app.config
+/AhorcadoAcceptanteTest/AhorcadoAcceptanteTest.csproj
+/AhorcadoAcceptanteTest/Properties/AssemblyInfo.cs

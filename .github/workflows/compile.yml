@@ -13,11 +13,7 @@ jobs:
 
     runs-on: windows-latest
 
-    steps:
-
-      - name: Install chromedriver_autoinstaller
-        run: import chromedriver_autoinstaller as chromedriver chromedriver.install()
-        
+    steps:        
       - name: Checkout code
         uses: actions/checkout@v4
 

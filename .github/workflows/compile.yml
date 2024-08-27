@@ -33,14 +33,14 @@ jobs:
 
       - name: Run unit tests
         run: |
-          cd ./UnitTests/
+          cd ./TDD/
           dotnet restore
           dotnet build
           dotnet test
           
       - name: Run acceptance tests
         run: |
-          cd ./Ahorcado.Acceptance_Test/
+          cd ./AcceptanceTest/
           dotnet restore
           dotnet build
           dotnet test

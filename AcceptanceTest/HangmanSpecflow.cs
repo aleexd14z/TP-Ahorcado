@@ -52,16 +52,18 @@ namespace Ahorcado.UIAutomation
         [When(@"I enter X as the typedLetter five times")]
         public void WhenIEnterXAsTheTypedLetterFiveTimes()
         {
+            Thread.Sleep(1000);
             var letterTyped = driver.FindElement(By.Id("LetterTyped"));
             var btnInsertLetter = driver.FindElement(By.Id("btnInsertLetter"));
             List<char> lettersRisked = ['s', 't', 'w', 'z', 'y', 'k', 'v'];
             for (int i = 0; i < 7; i++)
             {
+                Thread.Sleep(1000);
                 letterTyped.SendKeys(lettersRisked[i].ToString());
                 Thread.Sleep(1000);
                 btnInsertLetter.SendKeys(Keys.Enter);
                 Thread.Sleep(1000);
-                letterTyped.Clear(); // Limpiar el campo después de cada letra
+                letterTyped.Clear();
                 Thread.Sleep(1000);
             }
         }

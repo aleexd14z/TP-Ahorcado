@@ -30,5 +30,5 @@ Scenario: Insert a non-alphabetic Secret Word
 
 Scenario: Try to guess the same letter twice
     Given I have entered Sexto as the wordToGuess
-    When I enter X as the typedLetter one time and I enter X as the typedLetter again
+    When I enter invalid characters as the typedLetter
     Then The number of chances left should remain the same

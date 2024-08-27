@@ -268,7 +268,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("I have entered Sexto as the wordToGuess", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 33
-    testRunner.When("I enter X as the typedLetter one time and I enter X as the typedLetter again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I enter invalid characters as the typedLetter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 34
     testRunner.Then("The number of chances left should remain the same", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -15,6 +15,7 @@ namespace Ahorcado.UIAutomation
         IWebDriver driver;
         String baseURL = "https://agilesv2.azurewebsites.net/";
         int chancesLeftAnt;
+        string? chancesLeftBefore;
 
         [BeforeScenario]
         public void TestInitialize()
@@ -248,7 +249,7 @@ namespace Ahorcado.UIAutomation
             Thread.Sleep(1000);
         }
 
-        //Sexto text - Dos veces la misma letra no descuenta vidas
+        //Sexto text - Caracter invalido no descuenta vidas
         [Given(@"I have entered Sexto as the wordToGuess")]
         public void GivenIHaveEnteredSextoAsTheWordToGuess()
         {
@@ -265,14 +266,17 @@ namespace Ahorcado.UIAutomation
             Thread.Sleep(1000);
         }
 
-        [When(@"I enter X as the typedLetter one time and I enter X as the typedLetter again")]
+        [When(@"I enter invalid characters as the typedLetter")]
 
-        public void WhenIEnterXAsTheTypedLetterTwice()
+        public void WhenIEnterInvalidCharactersAsTheTypedLetter()
         {
             var letterTyped = driver.FindElement(By.Id("LetterTyped"));
             var btnInsertLetter = driver.FindElement(By.Id("btnInsertLetter"));
+            Thread.Sleep(1000);
 
-            List<char> lettersRisked = ['x', 'x'];
+            chancesLeftBefore = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
+
+            List<char> lettersRisked = ['1', '_'];
             for (int i = 0; i < 2; i++)
             {
                 letterTyped.SendKeys(lettersRisked[i].ToString());
@@ -287,10 +291,6 @@ namespace Ahorcado.UIAutomation
         [Then(@"The number of chances left should remain the same")]
         public void ThenTheNumberOfChancesLeftShouldRemainTheSame()
         {
-            Thread.Sleep(1000);
-
-            var chancesLeftBefore = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");
-
             Thread.Sleep(1000);
 
             var chancesLeftAfter = driver.FindElement(By.Id("ChancesLeft")).GetAttribute("value");

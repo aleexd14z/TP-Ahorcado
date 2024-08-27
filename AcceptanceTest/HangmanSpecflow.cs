@@ -12,7 +12,7 @@ namespace Ahorcado.UIAutomation
     [Binding]
     public class HangmanSpecflow
     {
-        IWebDriver driver;
+        IWebDriver driver; //
         String baseURL = "https://agilesv2.azurewebsites.net/";
         int chancesLeftAnt;
         string? chancesLeftBefore;

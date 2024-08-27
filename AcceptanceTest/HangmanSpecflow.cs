@@ -79,7 +79,7 @@ namespace Ahorcado.UIAutomation
         [AfterScenario]
         public void TestCleanUp()
         {
-            //driver.Quit();
+            driver.Quit();
         }
 
 

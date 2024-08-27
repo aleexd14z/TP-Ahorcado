@@ -1,32 +1,49 @@
-name: build, ut and at
-
+name: Build & Test
 on:
   push:
     branches:
       - master
   pull_request:
-    branches:
-      - master
-
+    types: [opened, synchronize, reopened]
 jobs:
   build:
-
+    name: Build and analyze
     runs-on: windows-latest
-
-    steps:        
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v4
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          dotnet-version: 8.0.x
+          java-version: 17
+          distribution: 'zulu' #Alternative distribution options are available. 
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  #Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Restore dependencies
-        run: dotnet restore
+      - name: build solution
+        run: |    
+          dotnet build
 
-      - name: Build
-        run: dotnet build --no-restore
+      - name: Start web application
+        run: |
+          dotnet run &
+
+      - name: Wait for the web application to be ready
+        run: |
+          sleep 10
 
       - name: Run unit tests
-        run: dotnet test --no-build --verbosity normal
+        run: |
+          cd ./TDD/
+          dotnet restore
+          dotnet build
+          dotnet test
+          
+      - name: Run acceptance tests
+        run: |
+          cd ./AcceptanceTest/
+          dotnet restore
+          dotnet build
+          dotnet test
+
+      
+          

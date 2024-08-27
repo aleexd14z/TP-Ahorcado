@@ -24,7 +24,7 @@ namespace Ahorcado.UIAutomation
             //var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers\chromedriver.exe";
             var path = AppDomain.CurrentDomain.BaseDirectory + @"../../../Drivers\chromedriver.exe";
             //chromeOptions.BinaryLocation = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-            chromeOptions.AddArgument("--start-maximized"); // Opcional: maximiza la ventana del navegador
+            chromeOptions.AddArgument("--start-maximized"); // maximiza la ventana del navegador
 
             driver = new ChromeDriver(path, chromeOptions);
             //driver = new ChromeDriver(chromeOptions);
